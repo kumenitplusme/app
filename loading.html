@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Loading Screen</title>
+    <style>
+      @font-face {
+        font-family: "CustomFont";
+        src: url("Noto_Sans_Cherokee/NotoSansCherokee-VariableFont_wght.ttf")
+          format("truetype");
+      }
+      body {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background: linear-gradient(
+          135deg,
+          #153677,
+          #4e085f
+        ); /* Dark background color */
+        color: #fff;
+        font-family: "CustomFont", sans-serif;
+      }
+
+      .loading-screen {
+        text-align: center;
+        padding: 20px;
+        border-radius: 15px;
+        animation: fadeIn 1s ease-out forwards;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .loading-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .loader {
+        border: 3px solid black; /* Loader color */
+        border-top: 3px solid transparent; /* Background color */
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        margin: auto;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes fadeOut {
+        0% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+      }
+      h1 {
+        font-size: 15px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loading-screen">
+      <div class="loading-wrapper">
+        <div class="loader"></div>
+        <h1>Loading...</h1>
+      </div>
+    </div>
+
+    <script>
+      // Wait for the DOM to be ready
+      document.addEventListener("DOMContentLoaded", function () {
+        // After 5 seconds, redirect to the main website with a cool animation
+        setTimeout(function () {
+          document.body.style.overflow = "hidden"; // Disable scrolling during transition
+          document.querySelector(".loading-screen").style.animation =
+            "fadeOut 1s ease-in forwards";
+
+          setTimeout(function () {
+            window.location.href = "index.html"; // Use the relative path to index.html or any other page you want
+          }, 1000); // Wait for the fade-out animation to complete
+        }, 3000);
+      });
+    </script>
+  </body>
+</html>
